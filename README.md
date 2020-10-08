@@ -26,7 +26,7 @@ Then use the following commands:
              
 where <YOUR_LOGIN> must be replaced by your login on Github, in order to download your fork.
 
-If you want to finish installing and then start a local ZdS instance, click on the link corresponding to your operating system.
+If you want to finish installing and then start a local mlhaiti instance, click on the link corresponding to your operating system.
 
 * [Installing on linux](installing_linux.md)
 * [Installing on windows](installing_windows.md)

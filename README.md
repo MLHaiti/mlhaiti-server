@@ -20,7 +20,7 @@ manager (Linux and macOS) or downloaded
 Then use the following commands:
            
                 git clone https://github.com/<YOUR_LOGIN>/mlhaiti-server.git
-                cd zds-site
+                cd mlhaiti-server
                 git remote add upstream https://github.com/mlhaiti/mlhaiti-server.git
                 git fetch upstream
              

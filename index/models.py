@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 class Profile(models.Model):
+	class Meta:
+		db_table = 'profiles'
+
 	date_created = models.DateTimeField(auto_now_add=True)
 	date_modified = models.DateTimeField(auto_now=True)
 
@@ -19,6 +22,9 @@ class Profile(models.Model):
 
 	verified = models.BooleanField(default=False)
 	date_verified = models.DateTimeField(null=True,blank=True)
+
+	def __str__(self):
+		return self.full_name
 
 	@property 
 	def full_name(self):

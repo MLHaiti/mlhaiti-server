@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 
     # own apps
     'index',
+    'forum',
 ]
 
 MIDDLEWARE = [

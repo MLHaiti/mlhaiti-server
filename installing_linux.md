@@ -8,5 +8,6 @@ Move in the directory where mlhaiti is located on our disk then installing the e
        make install
 
 Then run: 
-      make run
+
+       make run
       

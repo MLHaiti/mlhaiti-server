@@ -17,7 +17,7 @@ class Forum(models.Model):
 	subject = models.CharField(max_length=200)
 	description = models.TextField(max_length=500, blank=True)
 
-	messages = models.ManyToManyField('ForumMessage', blank=True)
+	messages = models.ManyToManyField('Message', blank=True, through='ForumMessage')
 
 	def __str__(self):
 		return self.subject
@@ -57,7 +57,7 @@ class ForumMessage(models.Model):
 	class Meta:
 		db_table = 'forum_jn_message'
 
-	forums = models.ForeignKey('Forum', on_delete=models.CASCADE)
+	forum = models.ForeignKey('Forum', on_delete=models.CASCADE)
 	message = models.ForeignKey('Message', on_delete=models.CASCADE)
 
 

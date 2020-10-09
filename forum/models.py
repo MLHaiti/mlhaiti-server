@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from common.utils import create_code, create_slug
+
 class Forum(models.Model):
 	class Meta:
 		db_table = 'forums'
@@ -19,6 +21,12 @@ class Forum(models.Model):
 
 	def __str__(self):
 		return self.subject
+
+	def save(self, *args, **kwargs):
+		if self.pk is None:
+			self.code = create_code(self, 50)	
+			self.slug = create_slug(self, field_name='subject')
+		super(Forum, self).save(*args, **kwargs)
 
 class Message(models.Model):
 	class Meta:

@@ -1,4 +1,10 @@
-install: 
+install: install-python  install-db install-dep
+
+install-python:
+	sudo apt-get install python3.8
+	pip3 install virtualenv
+
+install-dep:
 	virtualenv -p python3 venv 
 	venv/bin/pip install -r requirements/local.txt 
 	venv/bin/python manage.py migrate 

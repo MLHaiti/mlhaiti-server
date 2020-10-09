@@ -2,7 +2,7 @@
 
 After cloning, installing mlhaiti on Linux is relatively straightforward. 
 
-Move in the directory where mlhaiti is located on our disk then installing the envirronnement
+Move in the directory where mlhaiti is located on your disk then installing the envirronnement
        
        cd mlhaiti-server
        make install

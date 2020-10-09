@@ -41,7 +41,7 @@ If you want to finish installing and then start a local mlhaiti instance, click 
 
 ### quality Assurance 
 
-* Core reviews
+* Code reviews
 * checking that tests corresponding to the functionality or correction are present, consistent and pass
 
 ### milestones

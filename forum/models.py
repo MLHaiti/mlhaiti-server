@@ -48,10 +48,14 @@ class Message(models.Model):
 class MessageUser(models.Model):
 	class Meta:
 		db_table = 'message_jn_user'
+		verbose_name = 'Hidden Message'
 
 	message = models.ForeignKey('Message', on_delete=models.CASCADE)
 	user = models.ForeignKey(User, on_delete=models.CASCADE)	
 	date_hidden = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return "%s hidden to %s" % (self.message.content[:50], self.user.username)
 
 class ForumMessage(models.Model):
 	class Meta:

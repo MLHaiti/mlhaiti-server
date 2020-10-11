@@ -10,10 +10,10 @@ install:
   - pip install -r requirements/ci.txt
 
 before_script:
+  - cp .env.template .env
   - psql -c 'create database test_db;' -U postgres
 
 script:
-  - cp .env.template .env
   - python manage.py test --settings=config.settings.ci
 
 

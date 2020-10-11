@@ -9,34 +9,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-#setup env 
-import environ
-
-env = environ.Env()
-
-try:
-    PRODUCTION = env("PRODUCTION")
-except:
-    PRODUCTION = None
-
-if not PRODUCTION:
-    # reading .env file
-    environ.Env.read_env(os.path.join(BASE_DIR,'.env'))
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# Check if the settings
-# are running by TRAVIS
-try:
-    CI
-except NameError:
-    CI = False
-
-# if the settings are not running by TRAVIS
-# check to grab the varible from .env
-if not CI:
-    SECRET_KEY=env("DJANGO_SECRET_KEY")
+  
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -84,24 +59,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-# if the settings are not running by TRAVIS
-# check to grab the varible from .env
-if not CI:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env("DB_NAME"),
-            'USER': env("DB_USER"),
-            'PASSWORD': env("DB_PASSWORD"),
-            'HOST': env("DB_HOST"),
-            'PORT': env("DB_PORT"),
-        }
-    }
 
 
 # Password validation

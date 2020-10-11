@@ -1,3 +1,4 @@
 -r ./base.txt
 
 coveralls==2.1.2
+dj-database-url==0.5.0

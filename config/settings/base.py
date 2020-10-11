@@ -26,8 +26,16 @@ if not PRODUCTION:
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-if env:
+# Check if the settings
+# are running by TRAVIS
+try:
+    CI
+except NameError:
+    CI = False
+
+# if the settings are not running by TRAVIS
+# check to grab the varible from .env
+if not CI:
     SECRET_KEY=env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -81,7 +89,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if env:
+# if the settings are not running by TRAVIS
+# check to grab the varible from .env
+if not CI:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',

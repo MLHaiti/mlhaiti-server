@@ -3,6 +3,8 @@
 # when travis are running
 CI = True 
 
+import os
+
 from .base import * 
 
 import dj_database_url

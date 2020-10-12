@@ -33,8 +33,9 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # own apps
-    'index',
-    'forum',
+    'mlhaiti.index',
+    'mlhaiti.forum',
+    'mlhaiti.api',
 ]
 
 MIDDLEWARE = [

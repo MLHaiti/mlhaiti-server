@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.utils.deconstruct import deconstructible
 
-from common.utils import create_code, create_slug, NOW
+from mlhaiti.common.utils import create_code, create_slug, NOW
 
 class Profile(models.Model):
 	class Meta:

@@ -7,8 +7,9 @@ MLHaiti is a group of haitian programmer that want to learn and share their know
 Our technical project
 =====================
 Our technical project consists of several elements:
--  `mlhaiti-server <https://github.com/MLHaiti/mlhaiti-server>`__,  our backend api powered by Django 3.1.2 and PostgreSQL;
--  `mlhaiti-front <https://github.com/MLHaiti/mlhaiti-web-site>`__, our frontend pwered by NextJS;
+
+-  _`mlhaiti-server <https://github.com/MLHaiti/mlhaiti-server>`__,  our backend api powered by Django 3.1.2 and PostgreSQL;
+-  _`mlhaiti-front <https://github.com/MLHaiti/mlhaiti-web-site>`__, our frontend pwered by NextJS;
 
 Contribute to mlhaiti
 =====================
@@ -20,4 +21,4 @@ Contribute to mlhaiti
 .. |Licence MIT| image:: https://img.shields.io/badge/license-MIT-blue.svg
    :target: https://opensource.org/licenses/MIT
 .. |Join Chat| image:: https://img.shields.io/badge/whatsapp-join%20chat-brightgreen.svg
-   :target: 
+   :target: https://chat.whatsapp.com/I8gwNIzRuP4EAKsxwZWyWJ

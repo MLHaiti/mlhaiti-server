@@ -1,3 +1,5 @@
+|Build Status|
+
 # mlhaiti-server
 
 > Open source platform 
@@ -44,4 +46,5 @@ If you want to finish installing and then start a local mlhaiti instance, click 
 * Code reviews
 * checking that tests corresponding to the functionality or correction are present, consistent and pass
 
-### milestones
+
+.. |Build Status| image:: https://travis-ci.org/MLHaiti/mlhaiti-server.svg?branch=main

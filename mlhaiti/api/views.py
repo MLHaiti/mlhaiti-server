@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from forum.serializers import ForumSerializer 
-from index.serializers import UserSerializer 
-from forum.models import Forum 
+
 from django.contrib.auth.models import User
+
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import permissions
@@ -14,6 +13,10 @@ from rest_framework.status import (
     HTTP_201_CREATED,
     HTTP_403_FORBIDDEN,
 )
+
+from mlhaiti.forum.serializers import ForumSerializer 
+from mlhaiti.index.serializers import UserSerializer 
+from mlhaiti.forum.models import Forum 
 
 class UserList(generics.ListAPIView):
 	permission_classes = (permissions.AllowAny,)

@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from index.serializers import UserSerializer
+
+from mlhaiti.index.serializers import UserSerializer
+
 from .models import Forum, Message
 
 import datetime

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from common.utils import create_code, create_slug
+from mlhaiti.common.utils import create_code, create_slug
 
 class Forum(models.Model):
 	class Meta:

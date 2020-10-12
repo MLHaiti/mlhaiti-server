@@ -14,5 +14,9 @@ before_script:
 
 script:
   - python manage.py test --settings=config.settings.ci
+  - coverage run manage.py test --settings=config.settings.ci
+
+after_success:
+  coveralls
 
 

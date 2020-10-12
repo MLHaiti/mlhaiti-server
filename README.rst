@@ -8,8 +8,8 @@ Our technical project
 =====================
 Our technical project consists of several elements:
 
--  _`mlhaiti-server <https://github.com/MLHaiti/mlhaiti-server>`__,  our backend api powered by Django 3.1.2 and PostgreSQL;
--  _`mlhaiti-front <https://github.com/MLHaiti/mlhaiti-web-site>`__, our frontend pwered by NextJS;
+-  `mlhaiti-server <https://github.com/MLHaiti/mlhaiti-server>`__,  our backend api powered by Django 3.1.2 and PostgreSQL;
+-  `mlhaiti-front <https://github.com/MLHaiti/mlhaiti-web-site>`__, our frontend pwered by NextJS;
 
 Contribute to mlhaiti
 =====================

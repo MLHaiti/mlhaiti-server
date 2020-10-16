@@ -6,18 +6,14 @@ from django.utils.deconstruct import deconstructible
 from mlhaiti.common.utils import create_code, create_slug, NOW
 
 class Profile(models.Model):
-	class Meta:
-		db_table = 'profiles'
+	MALE,FEMALE = 'M','F'
+	GENDER = [(MALE,_('Male')),(FEMALE,_('Female'))]
 
 	date_created = models.DateTimeField(auto_now_add=True)
 	date_modified = models.DateTimeField(auto_now=True)
-
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	code = models.CharField(max_length=45, unique=True)
 	slug = models.SlugField(max_length=80, unique=True)
-
-	MALE,FEMALE = 'M','F'
-	GENDER = [(MALE,_('Male')),(FEMALE,_('Female'))]
 	gender = models.CharField(max_length=2,blank=True,choices=GENDER)
 	photo = models.OneToOneField("Photo", blank=True,null=True,on_delete=models.SET_NULL)
 	area_code = models.CharField(max_length=7,blank=True)
@@ -25,6 +21,9 @@ class Profile(models.Model):
 
 	verified = models.BooleanField(default=False)
 	date_verified = models.DateTimeField(null=True,blank=True)
+
+	class Meta:
+		db_table = 'profiles'
 
 	def __str__(self):
 		return self.full_name

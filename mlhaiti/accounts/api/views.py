@@ -1,6 +1,11 @@
-from django.shortcuts import render
+from django.contrib.auth import get_user_model
 
-from rest_framework.generics import GenericAPIView
+from rest_framework import generics, permissions
+from mlhaiti.accounts.api.serializers import UserSerializer
 
-class RegisterView(GenericAPIView):
-    pass
+User = get_user_model()
+
+class UserCreateView(generics.CreateAPIView):
+    permission_classes = []
+    serializer_class = UserSerializer
+    querysets = User.objects.all()

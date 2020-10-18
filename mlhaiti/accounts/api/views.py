@@ -1,20 +1,22 @@
 from django.contrib.auth import get_user_model
 
-from rest_framework import views, permissions, status
+from rest_framework import views, generics, permissions, status
 from rest_framework.response import Response 
 
 from mlhaiti.accounts.api.serializers import UserSerializer
 
 User = get_user_model()
 
-class UserCreateView(views.APIView):
+class UserCreateView(generics.CreateAPIView):
     """
         User Registration
-    """
+    """    
     permission_classes = []
-   
-    def post(self, request, format=None):
-        serializer = UserSerializer(data=request.data)
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(
@@ -36,5 +38,4 @@ class UserCreateView(views.APIView):
             },
             status=status.HTTP_400_BAD_REQUEST
         )
-    
 

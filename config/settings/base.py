@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,11 +31,13 @@ INSTALLED_APPS = [
 
     #third apps
     'rest_framework',
+    'rest_framework.authtoken',
 
     # own apps
-    'mlhaiti.index',
-    'mlhaiti.forum',
     'mlhaiti.api',
+    'mlhaiti.common',
+    'mlhaiti.accounts',
+    'mlhaiti.forum',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +78,10 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [ # new
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
     ],
     'DATETIME_FORMAT':'%s',
 }

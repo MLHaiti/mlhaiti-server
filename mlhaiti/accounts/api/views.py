@@ -20,12 +20,14 @@ class UserCreateView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            user = serializer.save()
+            data = serializer.data 
+            data['token'] = user.auth_token.key
             return Response(
                 {
                     'status':201,
                     'error':False,
-                    'data':serializer.data,
+                    'data':data,
                     'message':'user registred successfully'
                 },
                 status=status.HTTP_201_CREATED

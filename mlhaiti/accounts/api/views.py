@@ -1,4 +1,6 @@
-from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth import get_user_model, authenticate, logout
+from django.utils.translation import ugettext as _
+
 from rest_framework import views, generics, permissions, status
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response 
@@ -40,6 +42,10 @@ class UserCreateView(generics.CreateAPIView):
         )
 
 class UserLoginView(views.APIView):
+    """
+        User Login
+    """    
+    # {"username":"lemayzeur", "password":"admin509"}
     permission_classes = (permissions.AllowAny,)
     def post(self,request):
         username = request.data.get('username')
@@ -50,8 +56,66 @@ class UserLoginView(views.APIView):
                 token = Token.objects.get_or_create(user=user)[0]
                 data = UserSerializer(user).data
                 data['token'] = token.key 
-                return Response({'error':False, "message": "User Login Successfully", "data":data, "status": 200}, status=status.HTTP_200_OK)
+                return Response(
+                    {
+                        'error':False,
+                        "message": "User Login Successfully",
+                        "data":data,
+                        "status": 200
+                    },
+                    status=status.HTTP_200_OK
+                )
             message = "Unable to login with given credentials"
-            return Response({'error':True, "error_message": message , 'data': {}, 'status':401}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response(
+                {
+                    'error':True,
+                    "error_message": message ,
+                    'data': {},
+                    'status':401
+                },
+                status=status.HTTP_401_UNAUTHORIZED
+            )
         message = "Invalid Credentials"
-        return Response({'error':True, "error_message": message , 'data': {}, 'status':401}, status=status.HTTP_401_UNAUTHORIZED)
+        return Response(
+            {
+                'error':True, 
+                "error_message": message ,
+                'data': {},
+                'status':401
+            },
+            status=status.HTTP_401_UNAUTHORIZED
+        )
+
+
+class UserLogoutView(views.APIView):
+    """
+        User Logout
+    """    
+    def post(self, request):
+        return self.logout(request)
+
+    def logout(self, request):
+        try:
+            request.user.auth_token.delete()
+        except (AttributeError, ObjectDoesNotExist):
+            return Response(
+                {
+                    'error':True,
+                    "message": _("No user token found"),
+                    "data":{},
+                    "status": 401
+                },
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+
+        logout(request)
+        return Response(
+            {
+                'error':False,
+                "message": _("Successfully logged out."),
+                "data":{},
+                "status": 200
+            },
+            status=status.HTTP_200_OK
+        )
+

@@ -6,4 +6,5 @@ urlpatterns = [
     # ACCOUNT END-POINTS
     path('accounts/register', account_views.UserCreateView.as_view(), name='register'),
     path('accounts/login', account_views.UserLoginView.as_view(), name='login'),
+    path('accounts/logout', account_views.UserLogoutView.as_view(), name='logout'),
 ]

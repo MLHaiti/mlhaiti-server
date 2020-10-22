@@ -28,7 +28,7 @@ class UserCreateView(generics.CreateAPIView):
                     'status':201,
                     'error':False,
                     'data':data,
-                    'message':'user registred successfully'
+                    'message':_('user registred successfully')
                 },
                 status=status.HTTP_201_CREATED
             )
@@ -47,7 +47,6 @@ class UserLoginView(views.APIView):
     """
         User Login
     """    
-    # {"username":"lemayzeur", "password":"admin509"}
     permission_classes = (permissions.AllowAny,)
     def post(self,request):
         username = request.data.get('username')
@@ -61,13 +60,13 @@ class UserLoginView(views.APIView):
                 return Response(
                     {
                         'error':False,
-                        "message": "User Login Successfully",
+                        "message": _("User Login Successfully"),
                         "data":data,
                         "status": 200
                     },
                     status=status.HTTP_200_OK
                 )
-            message = "Unable to login with given credentials"
+            message = _("Unable to login with given credentials")
             return Response(
                 {
                     'error':True,
@@ -77,7 +76,7 @@ class UserLoginView(views.APIView):
                 },
                 status=status.HTTP_401_UNAUTHORIZED
             )
-        message = "Invalid Credentials"
+        message = _("Invalid Credentials")
         return Response(
             {
                 'error':True, 
@@ -98,7 +97,7 @@ class UserLogoutView(views.APIView):
 
     def logout(self, request):
         try:
-            request.user.auth_token.delete()
+            request.user.auth_token.delete() # delete the user authenticated user token
         except (AttributeError, ObjectDoesNotExist):
             return Response(
                 {
@@ -110,7 +109,7 @@ class UserLogoutView(views.APIView):
                 status=status.HTTP_401_UNAUTHORIZED
             )
 
-        logout(request)
+        logout(request) # Delete session
         return Response(
             {
                 'error':False,

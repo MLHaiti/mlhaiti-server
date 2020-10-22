@@ -1,6 +1,6 @@
-from django.contrib.auth import get_user_model
-
+from django.contrib.auth import get_user_model, authenticate
 from rest_framework import views, generics, permissions, status
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response 
 
 from mlhaiti.accounts.api.serializers import UserSerializer
@@ -33,9 +33,25 @@ class UserCreateView(generics.CreateAPIView):
             {
                 'status':400,
                 'error':True,
-                'data':[],
+                'data':{},
                 'message':serializer.errors
             },
             status=status.HTTP_400_BAD_REQUEST
         )
 
+class UserLoginView(views.APIView):
+    permission_classes = (permissions.AllowAny,)
+    def post(self,request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if user:
+                token = Token.objects.get_or_create(user=user)[0]
+                data = UserSerializer(user).data
+                data['token'] = token.key 
+                return Response({'error':False, "message": "User Login Successfully", "data":data, "status": 200}, status=status.HTTP_200_OK)
+            message = "Unable to login with given credentials"
+            return Response({'error':True, "error_message": message , 'data': {}, 'status':401}, status=status.HTTP_401_UNAUTHORIZED)
+        message = "Invalid Credentials"
+        return Response({'error':True, "error_message": message , 'data': {}, 'status':401}, status=status.HTTP_401_UNAUTHORIZED)

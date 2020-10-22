@@ -1,7 +1,11 @@
 from django.db import models
+from django.dispatch import receiver
 from django.contrib.auth.models import User 
+from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.utils.deconstruct import deconstructible
+
+from rest_framework.authtoken.models import Token
 
 from mlhaiti.common.utils import create_code, create_slug, NOW
 
@@ -83,3 +87,9 @@ class Photo(models.Model):
 	photo75 = models.ImageField(upload_to=object_directory_path('75x75'), blank=True)
 	photo37 = models.ImageField(upload_to=object_directory_path('37x37'), blank=True)
 	photo18 = models.ImageField(upload_to=object_directory_path('18x18'), blank=True)
+
+@receiver(post_save, sender=User)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+	if created:
+		Token.objects.create(user=instance)
+		Profile.objects.create(user=instance)
